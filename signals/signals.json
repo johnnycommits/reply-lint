@@ -1,0 +1,655 @@
+{
+  "schemaVersion": 1,
+  "defaultSignalsUrl": "https://raw.githubusercontent.com/johnnycommits/reply-lint/main/signals/signals.json",
+  "caveat": "Weights multiply predicted action probabilities in the For You value model. They are not engagement counts. A browser extension cannot compute those probabilities. Checks below only look at draft features and hard filters described in the pinned commit.",
+  "source": {
+    "repo": "xai-org/x-algorithm",
+    "url": "https://github.com/xai-org/x-algorithm",
+    "commit": "52d45989090e63992ba04e4f6cfccd73bf8cc05c",
+    "commitDate": "2026-11-25",
+    "commitTimeUtc": "2026-11-25T06:24:00Z",
+    "researchedAt": "2026-11-26"
+  },
+  "weights": [
+    {
+      "id": "favorite",
+      "label": "favorite (like)",
+      "weight": 0.708,
+      "path": "home-mixer/params/param.rs",
+      "lines": [466, 471]
+    },
+    {
+      "id": "reply",
+      "label": "reply",
+      "weight": 5,
+      "path": "home-mixer/params/param.rs",
+      "lines": [472, 472]
+    },
+    {
+      "id": "bidirectionalFollowReplyBoost",
+      "label": "bidirectional-follow reply boost",
+      "weight": 15,
+      "path": "home-mixer/params/param.rs",
+      "lines": [473, 478],
+      "note": "Original posts only. Replies are not eligible. See xai-value-model/inputs.rs bidirectional_boost_eligible."
+    },
+    {
+      "id": "bidirectionalFollowDwellBoost",
+      "label": "bidirectional-follow dwell boost",
+      "weight": 0,
+      "path": "home-mixer/params/param.rs",
+      "lines": [479, 484]
+    },
+    {
+      "id": "retweet",
+      "label": "retweet (repost)",
+      "weight": 1,
+      "path": "home-mixer/params/param.rs",
+      "lines": [485, 485]
+    },
+    {
+      "id": "photoExpand",
+      "label": "photo expand",
+      "weight": 0.05,
+      "path": "home-mixer/params/param.rs",
+      "lines": [486, 491]
+    },
+    {
+      "id": "videoOpen",
+      "label": "video open",
+      "weight": 0,
+      "path": "home-mixer/params/param.rs",
+      "lines": [492, 497]
+    },
+    {
+      "id": "click",
+      "label": "click (into post)",
+      "weight": 0.274,
+      "path": "home-mixer/params/param.rs",
+      "lines": [498, 498]
+    },
+    {
+      "id": "openLink",
+      "label": "open link",
+      "weight": 0.2,
+      "path": "home-mixer/params/param.rs",
+      "lines": [499, 499]
+    },
+    {
+      "id": "profileClick",
+      "label": "profile click",
+      "weight": 0,
+      "path": "home-mixer/params/param.rs",
+      "lines": [500, 505]
+    },
+    {
+      "id": "vqv",
+      "label": "VQV (video quality view)",
+      "weight": 0,
+      "path": "home-mixer/params/param.rs",
+      "lines": [506, 506]
+    },
+    {
+      "id": "share",
+      "label": "share (generic)",
+      "weight": 2.118,
+      "path": "home-mixer/params/param.rs",
+      "lines": [507, 507]
+    },
+    {
+      "id": "shareViaDm",
+      "label": "share via DM",
+      "weight": 5,
+      "path": "home-mixer/params/param.rs",
+      "lines": [508, 513]
+    },
+    {
+      "id": "shareViaCopyLink",
+      "label": "share via copy link",
+      "weight": 20,
+      "path": "home-mixer/params/param.rs",
+      "lines": [514, 519]
+    },
+    {
+      "id": "dwell",
+      "label": "dwell (binary)",
+      "weight": 0.05,
+      "path": "home-mixer/params/param.rs",
+      "lines": [520, 520]
+    },
+    {
+      "id": "quote",
+      "label": "quote",
+      "weight": 5,
+      "path": "home-mixer/params/param.rs",
+      "lines": [521, 521]
+    },
+    {
+      "id": "quotedClick",
+      "label": "quoted click",
+      "weight": 0.05,
+      "path": "home-mixer/params/param.rs",
+      "lines": [522, 527]
+    },
+    {
+      "id": "quotedVqv",
+      "label": "quoted VQV",
+      "weight": 0,
+      "path": "home-mixer/params/param.rs",
+      "lines": [528, 533]
+    },
+    {
+      "id": "followAuthor",
+      "label": "follow author",
+      "weight": 4,
+      "path": "home-mixer/params/param.rs",
+      "lines": [534, 539]
+    },
+    {
+      "id": "postUnexplored",
+      "label": "post unexplored",
+      "weight": 0.015,
+      "path": "home-mixer/params/param.rs",
+      "lines": [540, 545]
+    },
+    {
+      "id": "postVideo",
+      "label": "post video",
+      "weight": 0,
+      "path": "home-mixer/params/param.rs",
+      "lines": [546, 551]
+    },
+    {
+      "id": "grokAnalyze",
+      "label": "grok analyze",
+      "weight": 0,
+      "path": "home-mixer/params/param.rs",
+      "lines": [552, 557]
+    },
+    {
+      "id": "contDwellTime",
+      "label": "continuous dwell time",
+      "weight": 0.0075,
+      "path": "home-mixer/params/param.rs",
+      "lines": [558, 563],
+      "note": "Multiplies predicted seconds, not a probability."
+    },
+    {
+      "id": "contClickDwellTime",
+      "label": "continuous click dwell time",
+      "weight": 0.385,
+      "path": "home-mixer/params/param.rs",
+      "lines": [564, 569]
+    },
+    {
+      "id": "notInterested",
+      "label": "not interested",
+      "weight": -53.07,
+      "path": "home-mixer/params/param.rs",
+      "lines": [571, 576]
+    },
+    {
+      "id": "blockAuthor",
+      "label": "block author",
+      "weight": -31.2,
+      "path": "home-mixer/params/param.rs",
+      "lines": [577, 582]
+    },
+    {
+      "id": "muteAuthor",
+      "label": "mute author",
+      "weight": -58.8,
+      "path": "home-mixer/params/param.rs",
+      "lines": [583, 588]
+    },
+    {
+      "id": "report",
+      "label": "report",
+      "weight": -234,
+      "path": "home-mixer/params/param.rs",
+      "lines": [589, 589]
+    },
+    {
+      "id": "notDwelled",
+      "label": "not dwelled (scrolled past)",
+      "weight": -0.02,
+      "path": "home-mixer/params/param.rs",
+      "lines": [590, 595]
+    }
+  ],
+  "replyRisks": [
+    {
+      "id": "reply-was-pasted",
+      "summary": "The reply grader is told whether the reply text was pasted.",
+      "sources": [
+        {
+          "path": "grox/core/lm/thread.py",
+          "lines": [62, 63],
+          "note": "Renders the line “Reply Was Pasted” into the grader prompt."
+        }
+      ]
+    },
+    {
+      "id": "replies-last-24h",
+      "summary": "The reply grader sees the author's reply count over the last 24 hours.",
+      "sources": [
+        {
+          "path": "grox/core/lm/thread.py",
+          "lines": [48, 51],
+          "note": "“Num Replies Last 24 Hours”."
+        }
+      ]
+    },
+    {
+      "id": "legit-blocks-last-24h",
+      "summary": "The reply grader sees how many legit blocks the author received in the last 24 hours.",
+      "sources": [
+        {
+          "path": "grox/core/lm/thread.py",
+          "lines": [58, 61]
+        }
+      ]
+    },
+    {
+      "id": "grok-grades-large-accounts",
+      "summary": "Replies are Grok-graded when the parent or root author has more than 250,000 followers. Self-replies are skipped.",
+      "sources": [
+        {
+          "path": "grox/flows/reply_spam/constants.py",
+          "lines": [8, 8],
+          "note": "GROK_GEMMA_FOLLOWER_SPLIT = 250_000."
+        },
+        {
+          "path": "grox/flows/reply_spam/task_filter.py",
+          "lines": [185, 226]
+        }
+      ]
+    },
+    {
+      "id": "reply-score-range",
+      "summary": "The reply scorer returns a score from 0 to 3. How scores 1–3 are ordered in the conversation view is not in this repo.",
+      "sources": [
+        {
+          "path": "grox/flows/reply_spam/classifier_reply_ranking.py",
+          "lines": [164, 170]
+        }
+      ]
+    },
+    {
+      "id": "score-zero-hides-reply",
+      "summary": "A reply score of 0 adds RiskyHighVizReply, which drops the reply for non-followers, including notifications. High-cred and grey-badge accounts are exempt.",
+      "sources": [
+        {
+          "path": "grox/flows/reply_spam/task_write.py",
+          "lines": [140, 141]
+        },
+        {
+          "path": "grox/flows/reply_spam/task_write.py",
+          "lines": [39, 66],
+          "note": "Exempt when user cred >= 66 or grey badge."
+        },
+        {
+          "path": "visibility-filtering/rules/tweet_rules.rs",
+          "lines": [1042, 1047]
+        }
+      ]
+    },
+    {
+      "id": "only-lower-score-overwrites",
+      "summary": "An existing reply-ranking score is kept unless the new score is lower.",
+      "sources": [
+        {
+          "path": "grox/flows/reply_spam/task_write.py",
+          "lines": [124, 138]
+        }
+      ]
+    },
+    {
+      "id": "llm-slop-post",
+      "summary": "llm_slop_post adds RiskyHighVizReply for 30 days (2592000000 ms).",
+      "sources": [
+        {
+          "path": "abuse-enforcement-service/service-lib/rules/enforcement_post.yaml",
+          "lines": [39, 44]
+        }
+      ]
+    },
+    {
+      "id": "llm-slop-user",
+      "summary": "llm_slop_user adds the user label SpamHighRecall for 7 days (604800000 ms), which drops that user's posts.",
+      "sources": [
+        {
+          "path": "abuse-enforcement-service/service-lib/rules/enforcement_user.yaml",
+          "lines": [118, 123]
+        }
+      ]
+    },
+    {
+      "id": "fast-reply-spam",
+      "summary": "fast_reply_spam_post adds SpamHighRecall. The production rate threshold is not in the repo.",
+      "sources": [
+        {
+          "path": "abuse-enforcement-service/service-lib/rules/enforcement_post.yaml",
+          "lines": [53, 58]
+        }
+      ]
+    },
+    {
+      "id": "engagement-bait-drop",
+      "summary": "SpamEngagementBaiting, SpamEngagementFarming, SpamCardManipulation, and SpamPromotesShares apply SpamHighRecall, which drops the post for non-authors. SpamPromotesReplies and SpamPromotesClicks only add Promotes* labels. A separate head-zeroing switch for those labels is off at this commit.",
+      "sources": [
+        {
+          "path": "grox/flows/ptos/task_write_safety_post_annotations_result_sink.py",
+          "lines": [236, 266]
+        },
+        {
+          "path": "visibility-filtering/rules/tweet_rules.rs",
+          "lines": [957, 962]
+        },
+        {
+          "path": "home-mixer/params/param.rs",
+          "lines": [682, 687],
+          "note": "VMRankerSendEngagementIneligible = false."
+        }
+      ]
+    },
+    {
+      "id": "spam-shape-labels",
+      "summary": "Policy types include SpamHashTagAbuse, SpamMentionAbuse, and SpamScamLinks. Spam types other than the Promotes* exceptions apply SpamHighRecall unless the author is high-PageRank. Published numeric cutoffs for hashtags and mentions are not in the repo.",
+      "sources": [
+        {
+          "path": "grox/flows/ptos/state.py",
+          "lines": [37, 49]
+        },
+        {
+          "path": "grox/flows/ptos/task_write_safety_post_annotations_result_sink.py",
+          "lines": [252, 253]
+        }
+      ]
+    },
+    {
+      "id": "duplicate-content-drop",
+      "summary": "Posts labeled DUPLICATE_CONTENT are dropped for non-authors.",
+      "sources": [
+        {
+          "path": "visibility-filtering/rules/tweet_rules.rs",
+          "lines": [984, 989]
+        }
+      ]
+    },
+    {
+      "id": "content-features-no-threshold",
+      "summary": "Text length, newlines, URLs, and media are model features. URLs count as 23 weighted characters. There is no hand-set length or media threshold.",
+      "sources": [
+        {
+          "path": "home-mixer/models/content_features.rs",
+          "lines": [1, 19]
+        }
+      ]
+    },
+    {
+      "id": "bidirectional-boost-skips-replies",
+      "summary": "The +15 bidirectional reply boost applies to original posts from mutuals, not to replies.",
+      "sources": [
+        {
+          "path": "xai-value-model/inputs.rs",
+          "lines": [20, 22]
+        }
+      ]
+    },
+    {
+      "id": "oon-replies-off",
+      "summary": "Out-of-network replies are dropped unless EnablePhoenixOonReplies, which defaults to false. A reply reaches For You for followers.",
+      "sources": [
+        {
+          "path": "home-mixer/params/param.rs",
+          "lines": [73, 78]
+        }
+      ]
+    }
+  ],
+  "watchedPaths": [
+    "home-mixer/params/param.rs",
+    "vm-ranker/params.rs",
+    "xai-value-model/weights.rs",
+    "xai-value-model/scoring.rs",
+    "xai-value-model/inputs.rs",
+    "xai-value-model/phoenix_scores.rs",
+    "home-mixer/models/content_features.rs",
+    "home-mixer/filters",
+    "grox/flows/reply_spam",
+    "grox/flows/ptos",
+    "grox/core/lm/thread.py",
+    "abuse-enforcement-service/service-lib/rules",
+    "visibility-filtering/rules/tweet_rules.rs",
+    "visibility-filtering/rules/levels.rs",
+    "visibility-filtering/rules/author_rules.rs",
+    "README.md",
+    "docs"
+  ],
+  "checks": {
+    "typedNotPasted": {
+      "title": "Typed, not pasted",
+      "tag": "x-code",
+      "enabledByDefault": true,
+      "source": {
+        "path": "grox/core/lm/thread.py",
+        "lines": [62, 63],
+        "note": "The grader prompt includes “Reply Was Pasted”."
+      },
+      "reasonPass": "Typed into the composer. The reply grader is told whether a reply was pasted.",
+      "reasonWarn": "Pasted text is still in this draft. The reply grader is told whether a reply was pasted."
+    },
+    "soundsHuman": {
+      "title": "Sounds human",
+      "tag": "heuristic",
+      "enabledByDefault": true,
+      "heuristicNote": "X runs slop detection. This phrase list is ours, not that classifier.",
+      "related": {
+        "path": "abuse-enforcement-service/service-lib/rules/enforcement_post.yaml",
+        "lines": [39, 44],
+        "label": "llm_slop_post",
+        "note": "llm_slop_post adds RiskyHighVizReply. The phrases below are not from that rule."
+      },
+      "openers": [
+        "great point",
+        "great question",
+        "great post",
+        "absolutely",
+        "couldn't agree more",
+        "could not agree more",
+        "so true",
+        "this is so true",
+        "well said",
+        "love this",
+        "amazing post",
+        "thanks for sharing",
+        "thank you for sharing",
+        "interesting perspective",
+        "couldn't have said it better",
+        "could not have said it better",
+        "this resonates",
+        "so well said"
+      ],
+      "phrases": [
+        "as an ai",
+        "as a language model",
+        "delve",
+        "tapestry",
+        "in today's digital",
+        "in today's fast-paced",
+        "it's worth noting",
+        "it is worth noting",
+        "let's unpack",
+        "let us unpack",
+        "in conclusion",
+        "multifaceted",
+        "pivotal moment",
+        "game-changer",
+        "testament to",
+        "elevate your",
+        "unlock your",
+        "landscape of",
+        "robust framework"
+      ],
+      "reasonPass": "No generic opener or AI phrasing from our list. X runs slop detection; this list is ours.",
+      "reasonWarn": "Matches “{phrase}”. X runs slop detection, but this phrase list is ours."
+    },
+    "engagementBait": {
+      "title": "Engagement bait",
+      "tag": "x-code",
+      "enabledByDefault": true,
+      "source": {
+        "path": "grox/flows/ptos/task_write_safety_post_annotations_result_sink.py",
+        "lines": [236, 266],
+        "note": "SpamEngagementBaiting, SpamEngagementFarming, SpamCardManipulation, and SpamPromotesShares apply SpamHighRecall."
+      },
+      "detectorNote": "The phrase list is our detector. X's label comes from a policy model; its prompt is not in the repo.",
+      "phrases": [
+        "like if",
+        "like this if",
+        "rt if",
+        "retweet if",
+        "repost if",
+        "follow for more",
+        "follow me for",
+        "comment if",
+        "share if",
+        "tag someone",
+        "type yes if",
+        "smash that",
+        "turn on notifications",
+        "who else agrees",
+        "like and share",
+        "like & rt",
+        "drop a yes",
+        "retweet to"
+      ],
+      "reasonPass": "No engagement-bait phrases from our detector. X drops posts its policy model labels as engagement bait.",
+      "reasonFail": "Matches “{phrase}”. X labels this kind of engagement bait as spam and drops it. The phrase list is our detector, not X's prompt."
+    },
+    "spamHashtags": {
+      "title": "Hashtags",
+      "tag": "heuristic",
+      "enabledByDefault": true,
+      "heuristicNote": "The “more than 1 hashtag” cutoff is ours. X has a hashtag-abuse label and does not publish this number.",
+      "related": {
+        "path": "grox/flows/ptos/state.py",
+        "lines": [40, 40],
+        "label": "SpamHashTagAbuse",
+        "note": "Category name only. The cutoff is not in this file."
+      },
+      "maxHashtags": 1,
+      "reasonPass": "{count} hashtag. Our cutoff is {max}. X has a SpamHashTagAbuse label and does not publish this number.",
+      "reasonPassPlural": "{count} hashtags. Our cutoff is {max}. X has a SpamHashTagAbuse label and does not publish this number.",
+      "reasonWarn": "{count} hashtags. Our cutoff is {max}. X has a SpamHashTagAbuse label; this number is ours."
+    },
+    "spamMentions": {
+      "title": "@-mentions",
+      "tag": "heuristic",
+      "enabledByDefault": true,
+      "heuristicNote": "“Stacked” means more mentions than maxMentions. That cutoff is ours.",
+      "related": {
+        "path": "grox/flows/ptos/state.py",
+        "lines": [49, 49],
+        "label": "SpamMentionAbuse",
+        "note": "Category name only. The cutoff is not in this file."
+      },
+      "maxMentions": 2,
+      "reasonPass": "{count} @-mentions. Our cutoff is {max}. X has a SpamMentionAbuse label and does not publish this number.",
+      "reasonWarn": "{count} @-mentions. Our cutoff is {max}. X has a SpamMentionAbuse label; stacked means over that cutoff, which is ours."
+    },
+    "spamLinks": {
+      "title": "Links",
+      "tag": "heuristic",
+      "enabledByDefault": true,
+      "heuristicNote": "X has no general link penalty. Warning on any link is ours.",
+      "related": {
+        "path": "home-mixer/models/content_features.rs",
+        "lines": [1, 19],
+        "label": "has_url feature",
+        "note": "has_url is a model feature. External URLs add 23 to weighted length. open_link weight is +0.2. MALICIOUS_URL and UNTRUSTED_URL can drop a post; ordinary links are not dropped for being links."
+      },
+      "reasonPass": "No link. X has no general link penalty; this warning is ours.",
+      "reasonWarn": "Contains a link. X has no general link penalty (has_url is a model feature; open-link weight is +0.2). Untrusted or malicious URLs can be dropped. This warning is ours."
+    },
+    "spamDuplicate": {
+      "title": "Not a repeat",
+      "tag": "mixed",
+      "enabledByDefault": true,
+      "heuristicNote": "Matching against replies stored in this browser is our approximation. It is not X's duplicate detector.",
+      "source": {
+        "path": "visibility-filtering/rules/tweet_rules.rs",
+        "lines": [984, 989],
+        "note": "DUPLICATE_CONTENT drops the post for non-authors."
+      },
+      "minChars": 20,
+      "reasonPass": "Does not repeat a reply stored on this machine. X drops posts labeled duplicate content; this comparison is ours.",
+      "reasonSkip": "Too short to compare. X drops posts labeled duplicate content; this comparison is ours.",
+      "reasonWarn": "Same text as a reply stored on this machine. X drops posts labeled duplicate content. This comparison only sees replies saved locally."
+    },
+    "replyPace": {
+      "title": "Reply pace",
+      "tag": "mixed",
+      "enabledByDefault": true,
+      "heuristicNote": "The per-hour and per-day caps are the limits set on the options page. X does not publish those numbers.",
+      "source": {
+        "path": "grox/core/lm/thread.py",
+        "lines": [48, 51],
+        "note": "The grader sees “Num Replies Last 24 Hours”. fast_reply_spam_post can add SpamHighRecall (enforcement_post.yaml:53-58); its threshold is not published."
+      },
+      "defaultPerHour": 8,
+      "defaultPerDay": 40,
+      "reasonPass": "{hourCount} in the last hour (limit {hourLimit}), {dayCount} in the last day (limit {dayLimit}). The grader sees your 24-hour reply count; these caps are yours.",
+      "reasonWarn": "{hourCount} in the last hour (limit {hourLimit}), {dayCount} in the last day (limit {dayLimit}). The grader sees your 24-hour reply count; these caps are yours."
+    },
+    "invitesConversation": {
+      "title": "Invites a conversation",
+      "tag": "heuristic",
+      "enabledByDefault": true,
+      "heuristicNote": "Nothing in the ranking code scores questions, numbers, or first-hand detail. This nudge is ours.",
+      "experiencePatterns": [
+        "\\bwhen I\\b",
+        "\\bI tried\\b",
+        "\\bI saw\\b",
+        "\\bI use\\b",
+        "\\bI used\\b",
+        "\\bI've\\b",
+        "\\bI have\\b",
+        "\\bI was\\b",
+        "\\bI built\\b",
+        "\\bin my\\b",
+        "\\bmy experience\\b",
+        "\\bwe did\\b",
+        "\\blast week\\b",
+        "\\byesterday\\b",
+        "\\btoday I\\b"
+      ],
+      "reasonPass": "Has a question, a number, or a first-hand detail. This nudge is ours, not an X rule.",
+      "reasonWarn": "No question, number, or first-hand detail, so there is little to answer. This nudge is ours."
+    },
+    "infoLength": {
+      "title": "Length",
+      "tag": "info",
+      "related": {
+        "path": "home-mixer/models/content_features.rs",
+        "lines": [16, 16],
+        "label": "weighted_text_len",
+        "note": "Learned feature only. No 140, 280, or read-more constant in the ranking code."
+      },
+      "reason": "{count} characters. X sets no fixed length rule. This count is plain characters, not weighted_text_len."
+    },
+    "infoMedia": {
+      "title": "Media",
+      "tag": "info",
+      "related": {
+        "path": "home-mixer/models/content_features.rs",
+        "lines": [12, 15],
+        "label": "has_photo / media_count",
+        "note": "Model features only. photo_expand weight is 0.05. Video weights at this commit are 0. No media multiplier."
+      },
+      "reasonOn": "Media attached. X sets no fixed media rule. has_photo and media_count are model features.",
+      "reasonOff": "No media attached. X sets no fixed media rule. has_photo and media_count are model features."
+    }
+  }
+}
