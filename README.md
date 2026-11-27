@@ -8,7 +8,7 @@ It is a Manifest V3 Chrome extension. The rules engine is plain TypeScript. Thre
 
 While a reply is being written, a small panel lists checks as pass, watch, or fix. Each row has one line of reason and a tag. The panel updates as you type. Length and media are shown as information, because the ranking code sets no fixed rule for them.
 
-The active signals commit is in the panel footer (`52d4598 · 2026-11-25 · bundled` until a remote file is fetched).
+The active signals commit is in the panel footer. Until the first successful fetch it says `bundled`, or `bundled · update pending` if a refresh has already missed. After a good fetch it says `fetched` and the date.
 
 ## What it never does
 
@@ -78,19 +78,13 @@ Weights in `signals.json` are the For You value-model defaults. They multiply pr
 3. `npm test` validates the file against `signals/signals.schema.json` and against the runtime checker the service worker uses.
 4. `npm run build` bundles the file into the extension. Reload the unpacked extension.
 
-The service worker reads whatever URL is saved in options (default: the raw GitHub URL for this file on `main`), once a day via `chrome.alarms`, validates it, and stores it in `chrome.storage.local`. A bad or unreachable file does not replace a previously good cache. With no good cache, the panel uses the bundled copy. The footer says which one is active.
+The daily refresh reads the public raw file on `main`:
 
-No token is read, stored, or sent. A private raw URL will 404, and that is handled.
+`https://raw.githubusercontent.com/johnnycommits/reply-lint/main/signals/signals.json`
 
-### Private-repo fetch (decision for John)
+That is `defaultSignalsUrl`. The service worker fetches it once a day via `chrome.alarms`, validates it, and stores it in `chrome.storage.local`. The copy bundled into the extension is the offline fallback: a miss or invalid JSON does not replace a previously good cache, and with no good cache the panel keeps the bundled file. The raw URL 404s until this file is on `main`. Until the first successful fetch the footer stays on `bundled` (with `update pending` after a miss). It does not say the refresh failed. No token is read, stored, or sent.
 
-This repo is private, so `raw.githubusercontent.com` will fail without auth. The extension must not embed a token. Pick one:
-
-1. **Make the repo public**, or make only `signals/signals.json` public. The default URL then works.
-2. **Publish the file somewhere else** the manifest already allows: a public gist (`gist.githubusercontent.com`) or a GitHub Pages URL (`*.github.io`). Put that URL on the options page.
-3. **Leave the fetch failing** and ship the bundled copy. The panel still works offline. Update signals by rebuilding the extension.
-
-A URL on any other host needs a matching entry in `host_permissions` in `public/manifest.json`. The allowlist is raw GitHub, gists, and GitHub Pages so the extension is not granted the whole web.
+A custom URL on any other host needs a matching entry in `host_permissions` in `public/manifest.json`. The allowlist is raw GitHub, gists, and GitHub Pages so the extension is not granted the whole web.
 
 ## Develop
 
@@ -131,9 +125,8 @@ Not in this MVP.
 
 These are left for you. Defaults are in place so the extension runs.
 
-1. How should the daily signals fetch reach a private repo? Public file, gist, Pages, or bundled-only. See above. Do not add a token.
-2. Pace defaults are 8 replies per hour and 40 per day. They are guesses. X does not publish the `fast_reply_spam_post` threshold.
-3. The manifest matches the fixture port `4173`. Remove those two match patterns before a store build if you do not want the extension on local pages.
-4. The phrase lists are a starting set. They will be wrong for your voice until you edit them.
-5. The link warning fires on any link, and it is noisy if you reply with links on purpose. It is a heuristic and it can be turned off.
-6. `host_permissions` is limited to GitHub raw, gists, and GitHub Pages. Say if the signals URL should live somewhere else.
+1. Pace defaults are 8 replies per hour and 40 per day. They are guesses. X does not publish the `fast_reply_spam_post` threshold.
+2. The manifest matches the fixture port `4173`. Remove those two match patterns before a store build if you do not want the extension on local pages.
+3. The phrase lists are a starting set. They will be wrong for your voice until you edit them.
+4. The link warning fires on any link, and it is noisy if you reply with links on purpose. It is a heuristic and it can be turned off.
+5. `host_permissions` is limited to GitHub raw, gists, and GitHub Pages. Say if the signals URL should live somewhere else.

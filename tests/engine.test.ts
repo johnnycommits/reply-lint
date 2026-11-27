@@ -9,7 +9,7 @@ import {
   pastedStillPresent,
 } from "../src/engine/text";
 import { validateSignals } from "../src/engine/validate";
-import { resolveActiveSignals } from "../src/shared/active-signals";
+import { resolveActiveSignals, signalsFooter } from "../src/shared/active-signals";
 import { recordSentReply } from "../src/shared/reply-log";
 import { defaultSettings, resolveSettings } from "../src/shared/settings";
 import type { CheckResult, DraftInput, EvalContext, Signals } from "../src/engine/types";
@@ -230,6 +230,7 @@ describe("signals fallback and reply log", () => {
     );
     expect(cached.origin).toBe("fetched");
     expect(cached.fetchError).toContain("404");
+    expect(signalsFooter(cached)).toContain("refresh failed");
 
     const fallback = resolveActiveSignals(
       {
@@ -241,6 +242,12 @@ describe("signals fallback and reply log", () => {
     );
     expect(fallback.origin).toBe("bundled");
     expect(fallback.signals.source.commit).toBe(signals.source.commit);
+    const footer = signalsFooter(fallback);
+    expect(footer).toContain("bundled · update pending");
+    expect(footer).not.toContain("refresh failed");
+
+    const untouched = resolveActiveSignals(undefined, undefined);
+    expect(signalsFooter(untouched)).toBe("52d4598 · 2026-11-25 · bundled");
   });
 
   it("rejects a file that invents a weight or a check", () => {

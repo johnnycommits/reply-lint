@@ -6,6 +6,12 @@ The file is pinned to one commit of [xai-org/x-algorithm](https://github.com/xai
 
 JSON Schema: [`signals.schema.json`](./signals.schema.json). The extension rejects a fetch that fails the same checks (`src/engine/validate.ts`) and keeps the copy bundled at build time.
 
+Reply Lint’s daily refresh reads the public raw file on `main`:
+
+`https://raw.githubusercontent.com/johnnycommits/reply-lint/main/signals/signals.json`
+
+That URL 404s until this file is on `main`. Until the first successful fetch, the extension keeps the bundled copy. No token is involved. Morning Feed can read the same URL, or the copy in this repo.
+
 ## What the bot should read
 
 | Field                                 | Use                                                                                                                                                                                                            |

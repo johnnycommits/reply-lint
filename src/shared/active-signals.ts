@@ -60,12 +60,13 @@ export function resolveActiveSignals(
 export function signalsFooter(active: ActiveSignals): string {
   const sha = active.signals.source.commit.slice(0, 7);
   const date = active.signals.source.commitDate;
-  const where =
-    active.origin === "fetched" && active.fetchedAt
-      ? `fetched ${formatDay(active.fetchedAt)}`
-      : "bundled";
-  const problem = active.fetchError ? " · refresh failed" : "";
-  return `${sha} · ${date} · ${where}${problem}`;
+  if (active.origin === "fetched" && active.fetchedAt) {
+    const problem = active.fetchError ? " · refresh failed" : "";
+    return `${sha} · ${date} · fetched ${formatDay(active.fetchedAt)}${problem}`;
+  }
+  // A 404 before the first good fetch (the file is not on main yet) is not an error.
+  const pending = active.fetchError ? " · update pending" : "";
+  return `${sha} · ${date} · bundled${pending}`;
 }
 
 function formatDay(timestamp: number): string {
