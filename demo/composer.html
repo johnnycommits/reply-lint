@@ -1,0 +1,155 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Reply composer fixture</title>
+    <style>
+      :root {
+        color-scheme: dark;
+        background: #000;
+        color: #e7e9ea;
+        font-family: ui-sans-serif, system-ui, sans-serif;
+      }
+      body[data-theme="light"] {
+        color-scheme: light;
+        background: #fff;
+        color: #0f1419;
+      }
+      body {
+        margin: 0;
+      }
+      main {
+        width: min(560px, calc(100% - 48px));
+        margin: 48px auto;
+      }
+      h1 {
+        font-size: 18px;
+        margin: 0 0 8px;
+      }
+      p {
+        margin: 0 0 16px;
+        color: #8b98a5;
+        font-size: 14px;
+        line-height: 1.4;
+      }
+      .box {
+        border: 1px solid #2f3336;
+        border-radius: 16px;
+        padding: 12px;
+        background: transparent;
+      }
+      body[data-theme="light"] .box {
+        border-color: #cfd9de;
+      }
+      #composer {
+        min-height: 88px;
+        outline: none;
+        font-size: 18px;
+        line-height: 1.35;
+        white-space: pre-wrap;
+      }
+      #composer:empty::before {
+        content: "Post your reply";
+        color: #6e767d;
+      }
+      .toolbar {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-top: 12px;
+      }
+      button {
+        font: inherit;
+        font-weight: 700;
+        border: 0;
+        border-radius: 999px;
+        padding: 8px 16px;
+        background: #eff3f4;
+        color: #0f1419;
+        cursor: pointer;
+      }
+      .tools {
+        display: flex;
+        gap: 8px;
+        margin-top: 16px;
+      }
+      .tools button,
+      #reply {
+        background: #eff3f4;
+      }
+      #clicks {
+        margin-top: 16px;
+        font-size: 14px;
+      }
+      #media-slot:empty {
+        display: none;
+      }
+      .media {
+        margin-top: 8px;
+        border-radius: 12px;
+        background: #1d9bf0;
+        color: white;
+        padding: 16px;
+      }
+    </style>
+  </head>
+  <body data-theme="dark">
+    <main>
+      <h1>Reply composer fixture</h1>
+      <p>
+        Static stand-in for X's reply box. Load the unpacked extension, then type here.
+        The page counts Reply clicks on its own so you can see the extension does not
+        block them.
+      </p>
+      <div class="box">
+        <div
+          id="composer"
+          contenteditable="true"
+          role="textbox"
+          data-testid="tweetTextarea_0"
+          aria-label="Post your reply"
+        ></div>
+        <div id="media-slot"></div>
+        <div class="toolbar" data-testid="toolBar">
+          <span></span>
+          <button type="button" id="reply" data-testid="tweetButtonInline">Reply</button>
+        </div>
+      </div>
+      <div class="tools">
+        <button type="button" id="theme">Light theme</button>
+        <button type="button" id="media">Attach media</button>
+      </div>
+      <p id="clicks">Reply clicks observed by the page: 0</p>
+    </main>
+    <script>
+      const composer = document.querySelector("#composer");
+      const clicks = document.querySelector("#clicks");
+      let count = 0;
+      document.querySelector("#reply").addEventListener("click", () => {
+        count += 1;
+        clicks.textContent = `Reply clicks observed by the page: ${count} (“${composer.innerText.trim()}”)`;
+      });
+      document.querySelector("#theme").addEventListener("click", (event) => {
+        const next = document.body.dataset.theme === "dark" ? "light" : "dark";
+        document.body.dataset.theme = next;
+        event.currentTarget.textContent = next === "dark" ? "Light theme" : "Dark theme";
+        composer.dispatchEvent(new Event("input", { bubbles: true }));
+      });
+      document.querySelector("#media").addEventListener("click", (event) => {
+        const slot = document.querySelector("#media-slot");
+        if (slot.childElementCount) {
+          slot.replaceChildren();
+          event.currentTarget.textContent = "Attach media";
+        } else {
+          const media = document.createElement("div");
+          media.dataset.testid = "attachments";
+          media.className = "media";
+          media.textContent = "Media attached";
+          slot.append(media);
+          event.currentTarget.textContent = "Remove media";
+        }
+        composer.dispatchEvent(new Event("input", { bubbles: true }));
+      });
+    </script>
+  </body>
+</html>
